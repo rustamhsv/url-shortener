@@ -63,7 +63,7 @@ ROOT_URLCONF = 'urlshortener.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / "templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -134,3 +134,9 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# redirect user to home page after login
+LOGIN_REDIRECT_URL = 'index'
+
+# Log sent emails to the console
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

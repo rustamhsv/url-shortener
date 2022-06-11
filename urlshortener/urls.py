@@ -20,3 +20,9 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('shortener/', include('shortener.urls')),
 ]
+
+# add authentication paths
+urlpatterns += [
+    path('accounts/', include('django.contrib.auth.urls')),
+]
+
