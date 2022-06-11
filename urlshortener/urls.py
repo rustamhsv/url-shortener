@@ -16,6 +16,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
+from shortener import views
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shortener/', include('shortener.urls')),
@@ -24,5 +26,10 @@ urlpatterns = [
 # add authentication paths
 urlpatterns += [
     path('accounts/', include('django.contrib.auth.urls')),
+]
+
+# add redirection path - from shortened url to original url
+urlpatterns += [
+    path('<str:base62_encoding>', views.redirect_url_view, name='redirect-url'),
 ]
 

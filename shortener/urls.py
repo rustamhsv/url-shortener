@@ -3,6 +3,7 @@ from . import views
 
 urlpatterns = [
     path('', views.index, name='index'),
+    path('shorten/', views.URLShortenerView.as_view(), name='shorten'),
 ]
 
 urlpatterns += [

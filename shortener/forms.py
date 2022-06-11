@@ -2,6 +2,8 @@ from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.models import User
 
+from shortener.models import URL
+
 
 class RegistrationForm(UserCreationForm):
 
@@ -19,3 +21,9 @@ class RegistrationForm(UserCreationForm):
         # use 4 fields in the registration process
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class URLShortenerForm(forms.ModelForm):
+    class Meta:
+        model = URL
+        fields = ['long_URL']
