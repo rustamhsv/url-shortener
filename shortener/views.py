@@ -68,8 +68,8 @@ class URLShortenerView(LoginRequiredMixin, generic.FormView):
         # if user has shortened some URL then add short and long URL strings to the context dictionary
         # to show them on the current page
         if url:
-            context['long_url'] = url.long_URL
-            context['short_url'] = url.short_URL
+            context['long_URL'] = url.long_URL
+            context['short_URL'] = url.short_URL
         return context
 
 
