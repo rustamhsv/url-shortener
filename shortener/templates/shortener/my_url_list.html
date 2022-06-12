@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>My URLs</title>
+{% endblock %}
+
+{% block content %}
+    <h1>My shortened URLs</h1>
+    {% if url_list %}
+      <ul>
+        {% for url in url_list %}
+        <li>
+          <p><strong>Long URL: </strong> <a href="{{ url.long_URL }}" >{{ url.long_URL }}</a></p>
+          <p><strong>Short URL: </strong> <a href="{{ url.long_URL }}" >{{ url.short_URL  }}</a></p>
+        </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>You don't have any shortened URLs</p>
+    {% endif %}
+{% endblock %}

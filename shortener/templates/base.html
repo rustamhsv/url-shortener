@@ -24,6 +24,8 @@
         <ul class="sidebar-nav">
          <li><a href="{% url 'shorten' %}">Shorten URL</a></li>
             {% if user.is_authenticated %}
+             <li><a href="{% url 'my-urls' %}">My URLs</a></li>
+
              <li style="margin-top:2em;">User: {{ user.get_username }}</li>
              <li><a href="{% url 'logout' %}">Logout</a></li>
             {% else %}
