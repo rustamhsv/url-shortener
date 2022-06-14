@@ -12,7 +12,7 @@ class RegistrationFormTest(TestCase):
         form = RegistrationForm()
         self.assertEqual(form.fields['username'].help_text, '')
 
-    def test_registration_form(self):
+    def test_form_valid_data(self):
         form_data = {'username': 'tester',
                      'email': 'tester@mail.com',
                      'password1': 'strongpass',
@@ -52,13 +52,15 @@ class RegistrationFormTest(TestCase):
                          "Enter a valid email address.")
 
     def test_duplicate_username(self):
-        test_user = User.objects.create_superuser('tester', 'tester@test.com', 'verystrongpassword')
+
+        # Set up & store a test user for further duplication test
+        test_user = User.objects.create_user('tester', 'tester@test.com', 'verystrongpassword')
 
         form_data = {'username': 'tester',
-                           'email': 'tester@mail.com',
-                           'password1': 'strongpass',
-                           'password2': 'strongpass',
-                           }
+                     'email': 'tester@mail.com',
+                     'password1': 'strongpass',
+                     'password2': 'strongpass',
+                     }
 
         form = RegistrationForm(data=form_data)
         self.assertEqual(form.errors["username"][0],

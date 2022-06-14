@@ -7,9 +7,10 @@ from shortener.models import URL
 class URLModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
-        # Set up non-modified objects used by all test methods
+        # Set up a test user
         test_user = User.objects.create_superuser('tester', 'tester@test.com', 'verystrongpassword')
 
+        # store in mock database
         URL.objects.create(long_URL='https://www.britannica.com/topic/history',
                            short_URL='127.0.0.1:8000/G',
                            user=test_user)

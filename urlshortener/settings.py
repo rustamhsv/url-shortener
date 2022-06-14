@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
+
 import environ
+
 
 # Set the project base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +48,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Add our new shortener application
     'shortener.apps.ShortenerConfig',
+    # for testing
+    'django_nose',
 ]
 
 MIDDLEWARE = [
@@ -110,6 +114,15 @@ AUTH_PASSWORD_VALIDATORS = [
     {
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
+]
+
+# Use nose to run all tests
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
+# Tell nose to measure coverage on the 'shortener' app
+NOSE_ARGS = [
+    '--with-coverage',
+    '--cover-package=shortener',
 ]
 
 

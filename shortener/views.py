@@ -39,7 +39,7 @@ class URLShortenerView(LoginRequiredMixin, generic.FormView):
         last_id_number = URL.objects.last().id
 
         # get domain address
-        domain = self.request.META['HTTP_HOST']
+        domain = self.request.META.get('HTTP_HOST', '127.0.0.1:8000/')
 
         # encode id into base62 string
         base62_encoding = base62.encode(last_id_number)
@@ -87,8 +87,8 @@ class MyUrlsListView(LoginRequiredMixin, generic.ListView):
 def redirect_url_view(request, base62_encoding):
     """View to redirect short URL to original webpage."""
     # get domain address
-    domain = request.META['HTTP_HOST']
-
+    domain = request.META.get('HTTP_HOST', '127.0.0.1:8000/')
+    print('DOM: ', domain)
     # generate short url from domain name and parameter in the path
     short_url = f'{domain}/{base62_encoding}'
 
