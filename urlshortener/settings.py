@@ -11,8 +11,9 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 import os
 from pathlib import Path
-
 import environ
+import dj_database_url
+
 
 # Set the project base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -160,3 +161,7 @@ LOGIN_REDIRECT_URL = 'index'
 
 # Log sent emails to the console
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Heroku: Update database configuration from $DATABASE_URL.
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)

@@ -5,10 +5,12 @@ charset-normalizer==2.0.12
 commodity==0.20220422
 configobj==5.0.6
 coverage==6.4.1
+dj-database-url==0.5.0
 Django==4.0.5
 django-environ==0.8.1
 django-nose==1.4.7
 gitapi==1.0.1
+gunicorn==20.1.0
 hgapi==1.7.4
 idna==3.3
 nose==1.3.7
