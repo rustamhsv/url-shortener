@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.views.generic import RedirectView
 
 from shortener import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('shortener/', include('shortener.urls')),
+]
+
+urlpatterns += [
+    path('', RedirectView.as_view(url='shortener/', permanent=True)),
 ]
 
 # add authentication paths
