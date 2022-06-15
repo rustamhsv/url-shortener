@@ -1,6 +1,6 @@
 # URL-Shortener
 
-You can access the website at https://urlbutshorter.herokuapp.com/shortener/
+You can access the website at https://urlbutshorter.herokuapp.com
 
 **urlbutshorter** is URL shortening service. You enter some URL and the app produces short URL pointing to the original URL. When you put the short URL on your browser it redirects to the original web page. 
 
