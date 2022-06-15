@@ -31,7 +31,7 @@ environ.Env.read_env()
 SECRET_KEY = env('URLSHORTENER_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['urlbutshorter.herokuapp.com', '127.0.0.1']
 
@@ -167,7 +167,6 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 db_from_env = dj_database_url.config(conn_max_age=500)
 DATABASES['default'].update(db_from_env)
 
-# Simplified static file serving.
-# https://pypi.org/project/whitenoise/
+# Simplified static file serving with whitenoise.
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
