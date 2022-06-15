@@ -14,7 +14,6 @@ from pathlib import Path
 
 import environ
 
-
 # Set the project base directory
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -27,7 +26,6 @@ env = environ.Env(
 # Take environment variables from .env file
 environ.Env.read_env()
 
-
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('URLSHORTENER_SECRET_KEY')
 
@@ -35,7 +33,6 @@ SECRET_KEY = env('URLSHORTENER_SECRET_KEY')
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -82,20 +79,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'urlshortener.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+# For running in local
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'urlshortener',
-        'USER': 'rustam',
+        'USER': env('POSTGRESQL_USER'),
         'PASSWORD': env('POSTGRESQL_PASSWORD'),
         'HOST': 'localhost',
-        'PORT': '',
+        "PORT": 5432,  # default postgres port
     }
 }
+
+# For running in docker container
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'postgres',
+#         'USER': 'postgres',
+#         'PASSWORD': 'postgres',
+#         "HOST": "db",  # set in docker-compose.yml
+#         "PORT": 5432,  # default postgres port
+#     }
+# }
 
 
 # Password validation
@@ -125,7 +134,6 @@ NOSE_ARGS = [
     '--cover-package=shortener',
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
@@ -136,7 +144,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/

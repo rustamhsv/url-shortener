@@ -36,7 +36,10 @@ class URLShortenerView(LoginRequiredMixin, generic.FormView):
     def form_valid(self, form):
 
         # get id of last entry in database
-        last_id_number = URL.objects.last().id
+        try:
+            last_id_number = URL.objects.last().id
+        except AttributeError:  # if db is empty then assign it to zero
+            last_id_number = 0
 
         # get domain address
         domain = self.request.META.get('HTTP_HOST', '127.0.0.1:8000/')
