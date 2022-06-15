@@ -3,12 +3,14 @@
 You can access the website at https://urlbutshorter.herokuapp.com/shortener/
 
 **urlbutshorter** is URL shortening service. You enter some URL and the app produces short URL pointing to the original URL. When you put the short URL on your browswer it redirects to the original web page. 
+
 You should first register and login to use the service. You can log out at any time.
+
 You can check the history of your shortened URLs at **My URLs page**. 
 
 Here are the basic use cases:
-  1.URL shortening: given a long URL => return a much shorter URL
-  2.URL redirecting: given a shorter URL => redirect to the original URL
+  1) URL shortening: given a long URL => return a much shorter URL
+  2) URL redirecting: given a shorter URL => redirect to the original URL
 
 ## Requirements
 * This program requires python3.+ (and pip) installed, a guide on how to install python on various platforms can be found [here](https://www.python.org/)
@@ -61,11 +63,26 @@ python manage.py runserver
 "PORT": 5432,  # default postgres port  
 ```
 
+## Running the tests
+To run the test you can use the following commands:
+```
+python manage.py test shortener.tests
+```
+
+To run the tests with coverage run the following command:
+```
+coverage run --source='shortener' manage.py test
+```
+You can read about Coverage [here](https://coverage.readthedocs.io/en/6.4.1/)
+
+## Deployment
+The application is deployed to heroku for testing.
 
 
 ### System Architecture
 
 Below is Database design for our application.
+
 ![image](https://user-images.githubusercontent.com/75800756/173936182-f8a7642a-c99e-40be-8ac0-ff8497560d94.png)
 
 URL table stores long URL, short URL, and user who converted long URL to short one. 
@@ -103,12 +120,7 @@ URL Redirecting Flow:
 
 **302 redirect** method was used for redirection. It means that URL is “temporarily” moved to the long URL meaning that the requests for the same URL will be sent to the URL shortening
 service first. Then, they are redirected to the long URL server. It can track click rate and source of click easily, so it would be useful if analytics will be integrated in the future.
+
 Alternative would be to use **301 redirect**. It means that URL is “permanently” moved to the long URL. It reduces the server load because browser can cache the responses for future requests.
 
-End with an example of getting some data out of the system or using it for a little demo
-
-
-## Running the tests
-
-## Deployment
 
