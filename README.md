@@ -2,7 +2,7 @@
 
 You can access the website at https://urlbutshorter.herokuapp.com/shortener/
 
-**urlbutshorter** is URL shortening service. You enter some URL and the app produces short URL pointing to the original URL. When you put the short URL on your browswer it redirects to the original web page. 
+**urlbutshorter** is URL shortening service. You enter some URL and the app produces short URL pointing to the original URL. When you put the short URL on your browser it redirects to the original web page. 
 
 You should first register and login to use the service. You can log out at any time.
 
@@ -79,15 +79,15 @@ You can read about Coverage [here](https://coverage.readthedocs.io/en/6.4.1/)
 The application is deployed to heroku for testing.
 
 
-### System Architecture
+## System Architecture
 
-Below is Database design for our application.
+Below is Database design for the application.
 
 ![image](https://user-images.githubusercontent.com/75800756/173936182-f8a7642a-c99e-40be-8ac0-ff8497560d94.png)
 
 URL table stores long URL, short URL, and user who converted long URL to short one. 
 
-**Base62 conversion** was used as a hash algorithm for URL Shortener.Base conversion
+**Base62 conversion** was used as a hash algorithm for URL Shortener. Base conversion
 helps to convert the same number between its different number representation systems. Base
 62 conversion is used as there are 62 possible characters for hashValue.
 
@@ -123,4 +123,14 @@ service first. Then, they are redirected to the long URL server. It can track cl
 
 Alternative would be to use **301 redirect**. It means that URL is “permanently” moved to the long URL. It reduces the server load because browser can cache the responses for future requests.
 
+
+### Features to be added & Changes
+  1) URL table can also store creation and expiration dates for URLs.
+  2) When long URL is entered for shortening, it can be checked if this URL is already shortened before for that user and if it is, then return short URL from database instead of generating new one. In this way we can save more space in the database.
+  3) When guest user tries to shorten the URL, he/she is redirected to login page. "You should log in first" message can be displayed in this transition.
+  4) We can order history of URLs so that the latest URLs are shown on the top in My URLs page.
+  5) Pagination can be added to My URLs page.
+  6) longURL and shortURL fields in URL model should be changed to long_url and short_url accordingly to comply with PEP8 standarts.
+  7) Update and Delete functionalities can be added to shortened URLs.
+  8) More tests should be written to cover all parts of the application (especially views).
 
