@@ -102,7 +102,7 @@ Alternative method would be **hash + collision resolution** algorithm. It can us
 The features of Hash + collision resolution conversion:
 * The length of short URL is fixed
 * It doesn't require unique ID generation
-* Duplication of short URLs (collision) is possible band should be handled
+* Duplication of short URLs (collision) is possible and should be handled
 * It is not possible to figure out the next available short URL as it is random.
 
 We decided to use base62 conversion for its simplicity and functionality.
@@ -133,4 +133,5 @@ Alternative would be to use **301 redirect**. It means that URL is “permanentl
   6) longURL and shortURL fields in URL model should be changed to long_url and short_url accordingly to comply with PEP8 standarts.
   7) Update and Delete functionalities can be added to shortened URLs.
   8) More tests should be written to cover all parts of the application (especially views).
+  9) Set up an Email Service for 'reset password' functionality in case user forgets his/her password.
 
